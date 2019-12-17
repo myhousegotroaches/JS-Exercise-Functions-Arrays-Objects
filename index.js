@@ -196,9 +196,14 @@ function getCarInfoById(inventory, id) {
  * sortCarInventory returns an inventory that is sorted by car_model, ascending [A-Z].
  */
 function sortCarInventory(inventory) {
-  inventory.sort();
+  return inventory.sort(function(a, b) {
+    if (a.car_model > b.car_model) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
 }
-
 /**
  * ### Challenge `getModelYears`
  *
@@ -209,7 +214,12 @@ function sortCarInventory(inventory) {
  * getModelYears returns an array containing all the 'car_year's in the inventory.
  */
 function getModelYears(inventory) {
-  return inventory.forEach(inventory.car_year);
+  const carYears = [];
+
+  for (let i = 0; i < inventory.length; i++) {
+    carYears.push(inventory[i].car_year);
+  }
+  return carYears;
 }
 
 /**
@@ -225,11 +235,13 @@ function getModelYears(inventory) {
  * in the same order as they appear in the original inventory.
  */
 function getOlderCars(inventory, maxYear) {
+  const arrayOfCarYears = [];
   for (let i = 0; i < inventory.length; i++) {
     if (inventory[i].car_year <= maxYear) {
-      return inventory[i].car_year;
+      arrayOfCarYears.push(inventory[i].car_year);
     }
   }
+  return arrayOfCarYears;
 }
 
 /**
@@ -243,7 +255,7 @@ function getOlderCars(inventory, maxYear) {
  * made by either `Audi` or `Mercedes-Benz` or `Volkswagen` or `BMW`,
  * in the same order as they appear in the original inventory.
  */
-function getGermanCars(/* code here */) {
+function getGermanCars(/*writehere*/) {
   /* code here */
 }
 
@@ -267,10 +279,6 @@ function getGermanCars(/* code here */) {
  * }
  */
 const sum = null; // code here!
-
-const jum = (a, b) =>
-  return a + b;
-;
 const addFive = null; // code here!
 const argTimesTwo = null; // code here!
 
